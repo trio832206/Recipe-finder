@@ -24,11 +24,20 @@ pipeline {
                 bat 'npm run build'
             }
         }
+
+        stage('Start React Server') {
+            steps {
+                bat '''
+                    start "React Server" /B cmd /c "npm run preview -- --host 0.0.0.0 --port 4173 > react-server.log 2>&1"
+                '''
+            }
+        }
     }
 
     post {
         success {
             echo 'React application build successful!'
+            echo 'Open http://localhost:4173 in your browser.'
         }
 
         failure {
