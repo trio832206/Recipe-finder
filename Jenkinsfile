@@ -15,20 +15,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm ci'
+                bat 'npm ci'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
     }
 
     post {
         success {
-            echo 'React application built successfully!'
+            echo 'React application build successful!'
         }
 
         failure {
